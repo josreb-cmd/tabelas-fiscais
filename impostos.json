@@ -1,0 +1,72 @@
+{
+  "versao": "2026.1",
+  "vigencia_desde": "2026-01-06",
+  "fonte": "OC AT 40129/2026 (IMT) + CIS/TGIS Verbas 1.1, 17.1, 17.2",
+
+  "imt": {
+    "hpp": [
+      { "ate": 106346,  "taxa": 0,    "abater": 0 },
+      { "ate": 145470,  "taxa": 0.02, "abater": 2126.92 },
+      { "ate": 198347,  "taxa": 0.05, "abater": 6491.02 },
+      { "ate": 330539,  "taxa": 0.07, "abater": 10457.96 },
+      { "ate": 660982,  "taxa": 0.08, "abater": 13763.35 },
+      { "ate": 1150853, "taxa": 0.06, "abater": 0, "taxa_unica": true },
+      { "ate": null,    "taxa": 0.075,"abater": 0, "taxa_unica": true }
+    ],
+    "secundaria": [
+      { "ate": 106346,  "taxa": 0.01, "abater": 0 },
+      { "ate": 145470,  "taxa": 0.02, "abater": 1063.46 },
+      { "ate": 198347,  "taxa": 0.05, "abater": 5427.56 },
+      { "ate": 330539,  "taxa": 0.07, "abater": 9394.50 },
+      { "ate": 660982,  "taxa": 0.08, "abater": 12699.89 },
+      { "ate": 1150853, "taxa": 0.06, "abater": 0, "taxa_unica": true },
+      { "ate": null,    "taxa": 0.075,"abater": 0, "taxa_unica": true }
+    ]
+  },
+
+  "selo_aquisicao_imovel": {
+    "verba": "1.1",
+    "taxa": 0.008,
+    "base": "max(preco, VPT)"
+  },
+
+  "selo_credito": {
+    "_nota": "Verba 17.1 e 17.2 são tabelas distintas — nunca aplicar uma pela outra",
+
+    "geral": {
+      "verba": "17.1",
+      "aplica_a": ["habitacao", "empresarial", "outro_nao_consumo"],
+      "escaloes": [
+        { "prazo_max_meses": 12,  "taxa_mensal": 0.0004, "verba_detalhe": "17.1.1" },
+        { "prazo_min_anos": 1, "prazo_max_anos": 5,  "taxa": 0.005, "verba_detalhe": "17.1.2" },
+        { "prazo_min_anos": 5, "prazo_max_anos": null, "taxa": 0.006, "verba_detalhe": "17.1.3" }
+      ]
+    },
+
+    "consumo": {
+      "verba": "17.2",
+      "aplica_a": ["credito_pessoal", "credito_automovel"],
+      "dl_referencia": "DL 133/2009",
+      "escaloes": [
+        { "prazo_max_meses": 12,  "taxa_mensal": 0.00141, "verba_detalhe": "17.2 (<1 ano)" },
+        { "prazo_min_anos": 1, "prazo_max_anos": null, "taxa": 0.0176, "verba_detalhe": "17.2 (>=1 ano)" }
+      ]
+    },
+
+    "juros_e_comissoes": {
+      "verba": "17.2.1 / 17.3",
+      "taxa": 0.04,
+      "nota": "Aplica-se a juros e comissões em operações de crédito; habitação HPP isenta nos juros"
+    }
+  },
+
+  "beneficio_jovem": {
+    "lei": "DL 48-A/2024",
+    "idade_maxima": 35,
+    "limite_isencao_total": 330539,
+    "limite_isencao_parcial": 660982,
+    "aplica_a": ["imt", "selo_aquisicao_imovel"],
+    "nao_aplica_a": ["selo_credito"],
+    "nota": "Confirmado: a isenção cobre apenas a Verba 1.1 (aquisicao), nunca a Verba 17 (credito)"
+  }
+}
